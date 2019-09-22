@@ -1,0 +1,25 @@
+{
+    "extends": "tslint-config-airbnb",
+    "parser": "babel-eslint",
+    "env": {
+        "browser": true,
+        "es6": true
+    },
+    "rules": {
+        "strict": 0,
+        "quotemark": true,
+        "no-else-return": false,
+        "new-parens": true,
+        "no-arg": true,
+        "no-bitwise": true,
+        "no-conditional-assignment": true,
+        "no-consecutive-blank-lines": false,
+        "no-console": {
+            "severity": "warning",
+            "options": ["debug", "info", "log", "time", "timeEnd", "trace"]
+        },
+        "max-line-length": {
+            "options": [200]
+        }
+    }
+}
