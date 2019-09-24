@@ -4,15 +4,8 @@ body, html {
     height: 100%;
 }
 
-.logo {
-    background-image: url("img/rose-mobile.jpeg");
-    width: 100px;
-    height: 100px;
-    background-repeat: no-repeat;
-    background-size: contain;
-}
-
 .display {
     display: flex;
     flex-direction: column;
+    align-items: center;
 }

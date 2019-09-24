@@ -68,6 +68,7 @@ export class Display extends React.Component<{}, DisplayState> {
     }
 
     stop = () => {
+        this.tuner.update(this.dataArray);
         this.setState({ on: false });
         this.tuner.stop();
     }
@@ -76,15 +77,22 @@ export class Display extends React.Component<{}, DisplayState> {
         const btn = this.state.on ?
             <button onClick={this.stop}>Mic off</button> :
             <button onClick={this.record}>Mic on</button>;
-        this.tuner.update(this.dataArray);
         const hertz = this.calculateHertz(this.dataArray);
         const note = this.calculateNote(hertz);
+        const octave = hertz ? Math.round(note / 12) - 1 : 4;
+        // https://pages.mtu.edu/~suits/NoteFreqCalcs.html
+        // Equation for converting a note to a frequency
+        const halfSteps = note - 69;
+        const idealHertz = 440 * Math.pow(Math.pow(2, 1 / 12), halfSteps);
 
         return (
             <div className="display">
+                <div>Welcome to the Tuner Game!</div>
+                <div>Simply turn the microphone on and sing your note, then turn it off to see your score!</div>
                 <div>{btn}</div>
-                <div>{this.noteStrings[note % 12]}</div>
-                <div>{hertz}Hz</div>
+                <div>Note: {this.noteStrings[note % 12] || "A"} {octave}</div>
+                <div>{hertz ? hertz : 440}Hz</div>
+                <div>{hertz ? `Score: ${1000 - Math.abs(idealHertz - hertz)} points!` : ""}</div>
             </div>
         );
     }

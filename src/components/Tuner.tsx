@@ -9,10 +9,13 @@ export class Tuner {
     }
 
     record = () => {
-        navigator.mediaDevices.getUserMedia({ audio: true })
+        navigator.mediaDevices.getUserMedia({ audio: true, video: false })
             .then((stream: MediaStream) => {
                 this.stream = stream;
                 this.audioContext.createMediaStreamSource(stream).connect(this.analyser);
+            })
+            .catch((err: any) => {
+                console.error(err);
             });
     }
 
