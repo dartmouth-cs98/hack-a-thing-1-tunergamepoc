@@ -11,3 +11,8 @@ body, html {
     background-repeat: no-repeat;
     background-size: contain;
 }
+
+.display {
+    display: flex;
+    flex-direction: column;
+}
